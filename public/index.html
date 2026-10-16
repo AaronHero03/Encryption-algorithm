@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Algoritmo de Cifrado</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<!-- PANTALLA DE INICIO -->
+		<section id="home">
+			<div class="card">
+				<div class="text-container">
+					<h1>Algoritmo de encriptación</h1>
+					<p>
+						Escribe un texto y una clave. Verás como se encripta paso por paso.
+					</p>
+				</div>
+				<form id="inputs">
+					<div class="form-group">
+						<div class="texto-input">
+							<label>Texto</label>
+							<span>Hasta 100 caracteres</span>
+						</div>
+						<input
+							type="text"
+							id="texto"
+							name="texto"
+							class="input-texto"
+							placeholder="Hola mundo"
+							autocomplete="off"
+						/>
+					</div>
+
+					<div class="form-group">
+						<div class="texto-input">
+							<label>Clave</label>
+							<span>Hasta 16 caracteres</span>
+						</div>
+						<input
+							type="text"
+							id="clave"
+							name="clave"
+							class="input-texto"
+							placeholder="abc"
+							autocomplete="off"
+						/>
+					</div>
+					<button type="submit" class="accent-bg">Encriptar</button>
+				</form>
+			</div>
+		</section>
+
+		<!-- PANTALLA DE ANIMACIÓN (CONTENEDOR) -->
+		<section id="animation" class="hidden">
+			<div class="card">
+				<!-- VISTA 1: INTRO (Muestra el texto) -->
+				<div
+					id="view-intro"
+					class="view hidden"
+					style="
+						justify-content: center;
+						align-items: center;
+						text-align: center;
+						gap: 40px;
+					"
+				>
+					<h2 style="color: var(--text-dim); font-weight: 400">
+						Preparando encriptación para:
+					</h2>
+					<h1
+						id="intro-text"
+						class="brillo"
+						style="font-size: clamp(4rem, 6vw, 6rem)"
+					></h1>
+				</div>
+
+				<!-- VISTA 2: GRID DE ANIMACIÓN -->
+				<div id="view-grid" class="view hidden">
+					<div class="text-container">
+						<h1 id="fase">Ronda 1 de 5 - XOR con clave</h1>
+						<h2>Caracter <span id="char-n">1</span> de 16</h2>
+					</div>
+					<div class="anim-container">
+						<!-- Bloque -->
+						<div class="card-group">
+							<h3>Bloque</h3>
+							<div id="bloque-id" class="fila-bloque row">
+								<div class="col">
+									<div class="in-col box-brillo">
+										<h2 class="char">a</h2>
+										<span class="char-hex">D9</span>
+									</div>
+									<h4 class="num">01</h4>
+								</div>
+							</div>
+						</div>
+
+						<div class="operacion">
+							<h1 class="brillo text-operacion">6F &oplus; 6D = D9</h1>
+						</div>
+
+						<!-- Clave -->
+						<div id="clave-id" class="card-group">
+							<h3>Clave</h3>
+							<div class="fila-bloque row">
+								<div class="col">
+									<div class="in-col box-brillo">
+										<h2 class="char">a</h2>
+										<span class="char-hex">D9</span>
+									</div>
+									<h2 class="num">01</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="controles">
+						<div class="botones">
+							<button class="btn-saltar">SALTAR AL FINAL</button>
+							<button class="btn-pausar">PAUSAR</button>
+							<button class="btn-nav">&lt;</button>
+							<button class="btn-nav">&gt;</button>
+						</div>
+						<div class="velocidad">
+							<p class="upper">Velocidad</p>
+							<input
+								type="range"
+								id="vel"
+								class="vel-range"
+								min="0"
+								max="8"
+								value="4"
+								step="1"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- VISTA 3: RESULTADOS -->
+				<div id="view-result" class="view hidden" style="gap: 40px">
+					<div class="text-container" style="text-align: center">
+						<h1 class="brillo">Cifrado Terminado</h1>
+					</div>
+
+					<div
+						style="
+							display: flex;
+							flex-direction: column;
+							gap: 30px;
+							flex: 1;
+							justify-content: center;
+						"
+					>
+						<div class="res-box">
+							<h3>Texto Cifrado (Hexadecimal)</h3>
+							<p id="res-cifrado" class="hex-break"></p>
+						</div>
+						<div class="res-box">
+							<h3>Texto Descifrado (Comprobación)</h3>
+							<p
+								id="res-descifrado"
+								style="color: var(--bg-accent); font-weight: 700"
+							></p>
+						</div>
+					</div>
+
+					<button
+						id="btn-reiniciar"
+						class="accent-bg"
+						style="height: clamp(60px, 8vh, 90px)"
+					>
+						Encriptar Otro Texto
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<script type="module" src="/main.js"></script>
+	</body>
+</html>

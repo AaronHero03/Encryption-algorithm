@@ -1,0 +1,434 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root {
+	--bg: linear-gradient(to bottom, #0f0f0f 0%, #212121 100%);
+	--bg-card: #1a1a1a;
+	--bg-input: #1e1e1e5f;
+	--border-card: linear-gradient(to bottom left, #ffffff55 0%, #ffffff11 100%);
+	--bg-accent: #ffffff;
+	--bg-dim: #747373;
+	--border-active: #ffffff87;
+
+	--text-main: #ffffff;
+	--text-dim: #ffffffc6;
+	--text-dark: #000000c6;
+
+	--sans: "Open Sans", sans-serif;
+	--mono:
+		"JetBrains Mono", "Fira Code", ui-monospace, Consolas, "Courier New",
+		monospace;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100vh;
+	height: 100dvh;
+	background: var(--bg);
+	font-size: 9px;
+	line-height: 1.5;
+	letter-spacing: -0.01em;
+	-webkit-font-smoothing: antialiased;
+	font-family: var(--sans);
+	overflow: hidden;
+}
+
+section {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#home .card {
+	width: 72vw;
+}
+#animation .card {
+	width: 90vw;
+	height: 90vh;
+	align-items: center;
+}
+
+.card {
+	border: 2px solid transparent;
+	border-radius: clamp(20px, 2.4vw, 32px);
+	padding: clamp(3rem, 4.8vw, 6rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background:
+		linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+		var(--border-card) border-box;
+}
+
+h1 {
+	color: var(--text-main);
+	font-size: clamp(28px, 4vw, 3.2rem);
+	font-style: italic;
+	font-weight: 800;
+	margin: 0;
+}
+h2 {
+	color: var(--text-main);
+	font-size: clamp(22px, 3vw, 2.6rem);
+	font-weight: 900;
+	margin: 0;
+}
+h3 {
+	color: var(--text-main);
+	font-size: clamp(20px, 2.5vw, 2.4rem);
+	font-style: italic;
+	font-weight: 800;
+	margin: 0;
+}
+h4 {
+	color: var(--text-main);
+	font-size: clamp(18px, 2vw, 2.15rem);
+	font-weight: 600;
+	margin: 0;
+}
+p {
+	color: var(--text-dim);
+	font-size: clamp(16px, 1.5vw, 2rem);
+	margin: 0;
+}
+
+.text-container {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+#animation .text-container {
+	align-items: center;
+}
+
+form {
+	margin-top: 8vh;
+	gap: 6vh;
+	width: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(1.4rem, 1.6vw, 2rem);
+	width: 100%;
+}
+.texto-input {
+	display: flex;
+	align-items: baseline;
+	width: 100%;
+	color: var(--text-main);
+	gap: clamp(1.4rem, 2vw, 2.6rem);
+}
+label {
+	font-size: 2.2rem;
+	font-weight: bold;
+}
+.texto-input span {
+	color: var(--text-dim);
+	font-size: 2rem;
+}
+
+.input-texto {
+	width: 100%;
+	background-color: var(--bg-input);
+	border: 2px solid var(--border-active);
+	border-radius: 8px;
+	height: clamp(75px, 8.5vh, 105px);
+	padding: 0 clamp(1.4rem, 2vw, 2.4rem);
+	color: var(--text-main);
+	font-size: 2rem;
+	font-family: inherit;
+	outline: none;
+}
+
+input::placeholder {
+	font-size: 2rem;
+	color: var(--text-dim);
+}
+
+button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	border-radius: 8px;
+	text-transform: uppercase;
+	font-size: 1.6rem;
+	font-weight: 500;
+	letter-spacing: 50%;
+	background: var(--bg-accent);
+	color: var(--text-dark);
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+form button {
+	width: 100%;
+	height: clamp(75px, 8.5vh, 105px);
+	font-weight: 700;
+}
+button:hover:not(:disabled) {
+	border: 1px solid var(--border-active);
+	background-color: var(--bg-input);
+	color: var(--text-main);
+}
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* VISTAS Y ANIMACIONES */
+.view {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	animation: fadeIn 0.8s ease forwards;
+}
+.hidden {
+	display: none !important;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.anim-container {
+	width: 95%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.card-group {
+	width: 100%;
+}
+.fila-bloque {
+	margin-top: 10px;
+	display: grid;
+	grid-template-columns: repeat(16, 1fr);
+	width: 100%;
+	gap: 2%;
+}
+.col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.in-col {
+	width: 100%;
+	aspect-ratio: 0.65;
+	overflow: hidden;
+	padding: 20px 0;
+	justify-content: space-around;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 4px;
+	transition:
+		background-color 0.5s ease-out,
+		transform 0.25s linear;
+}
+
+#bloque-id .col .in-col {
+	background-color: #363636;
+	border: 2px solid var(--border-active);
+}
+#clave-id .col .in-col {
+	background-color: var(--bg-input);
+	border: 2px solid var(--border-active);
+}
+#bloque-id .col .in-col:hover,
+#clave-id .col .in-col:hover {
+	background-color: #767575;
+	border: 2px solid var(--border-active);
+	transform: translateY(-15px);
+}
+
+#bloque-id .col .in-col.active,
+#clave-id .col .in-col.active {
+	background-color: var(--bg-accent);
+	border: 2px solid var(--bg-accent);
+	transform: translateY(-15px);
+	box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+}
+
+.in-col.active .char,
+.in-col.active .char-hex {
+	color: var(--text-dark);
+}
+.box-brillo {
+	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+	transition: all 0.3s ease;
+}
+.char-hex {
+	font-size: 2rem;
+	font-weight: 400;
+	color: var(--text-dim);
+	margin: 0;
+	padding: 0;
+}
+.num {
+	margin-top: 20px;
+}
+
+.operacion {
+	width: 100%;
+	margin: 20px 0;
+	display: flex;
+	justify-content: center;
+}
+.brillo {
+	text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+.controles {
+	width: 95%;
+	display: flex;
+	gap: 5%;
+}
+.botones {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	height: 60px;
+	width: 65%;
+	gap: 40px;
+}
+.btn-saltar {
+	flex: 1.5;
+}
+.btn-pausar {
+	flex: 1;
+	border: 1px solid var(--border-active);
+	background-color: var(--bg-input);
+	color: var(--text-main);
+}
+.btn-pausar:hover,
+.btn-nav:hover {
+	background: var(--bg-accent);
+	color: var(--text-dark);
+}
+.btn-nav {
+	border: 1px solid var(--border-active);
+	background-color: var(--bg-input);
+	color: var(--text-main);
+	aspect-ratio: 1;
+}
+.velocidad {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	gap: 5%;
+}
+.upper {
+	text-transform: uppercase;
+	font-size: 1.6rem;
+	font-weight: 500;
+	letter-spacing: 50%;
+}
+
+.vel-range {
+	flex: 1;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 6px;
+	background: rgba(255, 255, 255, 0.25);
+	border-radius: 10px;
+	outline: none;
+	box-shadow:
+		0 0 10px rgba(255, 255, 255, 0.15),
+		inset 0 1px 3px rgba(255, 255, 255, 0.2);
+	transition: all 0.3s ease;
+}
+.vel-range:hover {
+	background: rgba(255, 255, 255, 0.35);
+	box-shadow:
+		0 0 12px rgba(255, 255, 255, 0.25),
+		inset 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+.vel-range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: #ffffff;
+	cursor: pointer;
+	box-shadow:
+		0 0 15px rgba(255, 255, 255, 0.8),
+		0 0 5px rgba(255, 255, 255, 0.5);
+}
+.vel-range::-moz-range-thumb {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: #ffffff;
+	cursor: pointer;
+	border: none;
+	box-shadow:
+		0 0 15px rgba(255, 255, 255, 0.8),
+		0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* VISTA DE RESULTADOS */
+.res-box {
+	background-color: var(--bg-input);
+	border: 1px solid var(--border-active);
+	border-radius: 8px;
+	padding: 2.5rem;
+	width: 100%;
+}
+.res-box h3 {
+	margin-bottom: 15px;
+	font-size: 2.2rem;
+}
+.hex-break {
+	font-family: var(--mono);
+	font-size: 2.4rem;
+	color: var(--text-main);
+	word-break: break-all; /* Para que el string hexadecimal muy largo salte de linea */
+	letter-spacing: 0.1rem;
+}
+
+/* --- ESTILO PARA EL RELLENO (RAYAS DIAGONALES) --- */
+.in-col.relleno {
+	background-image: repeating-linear-gradient(
+		-45deg,
+		transparent,
+		transparent 8px,
+		rgba(255, 255, 255, 0.08) 8px,
+		rgba(255, 255, 255, 0.08) 16px
+	);
+}
+
+/* Evitar que las rayas tapen el color sólido si el elemento se vuelve activo */
+.in-col.active.relleno {
+	background-image: repeating-linear-gradient(
+		-45deg,
+		transparent,
+		transparent 8px,
+		rgba(0, 0, 0, 0.15) 8px,
+		rgba(0, 0, 0, 0.15) 16px
+	);
+}
